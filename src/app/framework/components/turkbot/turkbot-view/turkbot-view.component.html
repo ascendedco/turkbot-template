@@ -1,0 +1,48 @@
+<div class="container">
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Turkbots</mat-card-title>
+      <mat-card-subtitle>
+        <button mat-stroked-button routerLink="new">Add Turkbot</button>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-progress-bar [ngClass]="{ visible: loading$ | async }" mode="indeterminate"></mat-progress-bar>
+      <table mat-table [dataSource]="turkbot$ | async">
+
+        <!-- Field Columns -->
+        <!-- TODO: Configure / add required form fields -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let entity"> {{ entity.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="url">
+          <th mat-header-cell *matHeaderCellDef> Url </th>
+          <td mat-cell *matCellDef="let entity"> {{ entity.url }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let entity"> {{ entity.description }} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let entity">
+            <button mat-stroked-button [routerLink]="['./', entity.id]">Edit</button>
+            <button mat-stroked-button (click)="delete(entity)">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

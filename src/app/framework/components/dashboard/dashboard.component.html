@@ -4,12 +4,13 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Architecture</mat-toolbar>
-    <!--<mat-nav-list>
-      <mat-list-item routerLink="users">
+    <mat-nav-list>
+      <mat-list-item routerLink="turkbot">
         <mat-icon matListIcon>folder</mat-icon>
-        <h3 matLine>Users</h3>
+        <h3 matLine>Turkbot</h3>
+        <h4 matLine>Total: {{ numberOfTurkbots$ | async }}</h4>
       </mat-list-item>
-    </mat-nav-list>-->
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>

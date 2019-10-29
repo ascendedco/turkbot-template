@@ -27,12 +27,20 @@ import { StoreModule } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store'
 import { RouterSerializer } from './presentation/router/router.selectors'
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
+import { TurkbotCreateComponent } from './framework/components/turkbot/turkbot-create/turkbot-create.component';
+import { TurkbotEditComponent } from './framework/components/turkbot/turkbot-edit/turkbot-edit.component';
+import { TurkbotViewComponent } from './framework/components/turkbot/turkbot-view/turkbot-view.component'
+import {TurkbotNetwork} from "./domain/gateways/network/turkbot.network";
+import {FirebaseTurkbotNetwork} from "./network/firebase/firebase.turkbot.network";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    TurkbotCreateComponent,
+    TurkbotEditComponent,
+    TurkbotViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +76,7 @@ import { MatTableModule } from '@angular/material/table'
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: RouterSerializer },
+    { provide: TurkbotNetwork, useClass: FirebaseTurkbotNetwork }
   ],
   bootstrap: [AppComponent],
 })
